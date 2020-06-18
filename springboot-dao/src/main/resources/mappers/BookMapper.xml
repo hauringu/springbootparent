@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.bssm.dao.BookDao">
+
+    <resultMap id="bookResultMap" type="Book">
+        <id property="id" column="id"/>
+        <result property="title" column="title"/>
+        <result property="author" column="author"/>
+        <result property="price" column="price"/>
+        <result property="state" column="state"/>
+    </resultMap>
+
+    <select id="queryBook" resultMap="bookResultMap">
+        select *
+        from book
+        where title like concat(concat('%', #{title}), '%')
+    </select>
+
+</mapper>
